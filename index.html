@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Companies House Deadline Reminders | Webfile</title>
+  <meta name="description" content="Never miss a Companies House filing deadline. Webfile tracks accounts and confirmation statement deadlines for all your companies and keeps reminding you until they're filed. Free for up to 3 companies.">
+  <meta name="theme-color" content="#F5F7FC">
+  <!-- Preview only: stops search engines indexing the GitHub preview. REMOVE before launch. -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>(function(){var d=document.documentElement,t;if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('js-anim');try{t=localStorage.getItem('wf-theme')}catch(e){}if(t!=='dark'&&t!=='light')t='light';d.setAttribute('data-theme',t);try{localStorage.removeItem('wf-palette')}catch(e){}})();</script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m4.5 7 7.5 6 7.5-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="13" y="4" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="4" y="13" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="13" y="13" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a href="#top" class="logo" aria-label="Webfile home">webfile<span>.</span></a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#features">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    <a href="#start" class="btn btn--primary btn--sm">Get started</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__content" data-hero-content>
+      <h1 id="hero-title">
+        <span class="eyebrow">Companies House deadline reminders</span>
+        Deadlines pile&nbsp;up. <em>We’ll keep&nbsp;track.</em>
+      </h1>
+      <p class="hero__sub">Running a company comes with dates to remember: accounts, confirmation statements, and the odd reminder email that gets lost in your inbox. Webfile keeps an eye on your Companies House deadlines and gives you a friendly nudge until each one is filed.</p>
+      <div class="hero__ctas">
+        <a href="#features" class="btn btn--primary">See how it works <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="#start" class="btn btn--ghost">Try it free</a>
+      </div>
+      <p class="hero__note">Free for up to 3 companies. You or your accountant still file as usual. We just help you remember.</p>
+    </div>
+
+    <div class="pile" data-pile aria-hidden="true">
+      <span class="pile-item"><i class="ic ic--red">!</i>Accounts overdue</span>
+      <span class="pile-item pile-item--alert"><i class="ic">£</i>Late filing penalty · £375</span>
+      <span class="pile-item"><i class="ic ic--amber"><svg><use href="#i-clock"/></svg></i>Confirmation statement due</span>
+      <span class="pile-item"><i class="ic ic--grey"><svg><use href="#i-mail"/></svg></i>Reminder email · unread</span>
+      <span class="pile-item dot">3</span>
+      <span class="pile-item"><i class="ic ic--red">!</i>Final reminder</span>
+      <span class="pile-item"><i class="ic ic--amber"><svg><use href="#i-clock"/></svg></i>Accounts due tomorrow</span>
+      <span class="pile-item pile-item--alert"><i class="ic">£</i>Penalty doubled · £750</span>
+      <span class="pile-item"><i class="ic ic--grey"><svg><use href="#i-mail"/></svg></i>Inbox (1,284)</span>
+      <span class="pile-item dot dot--amber">!</span>
+      <span class="pile-item"><i class="ic ic--amber">ID</i>Identity verification needed</span>
+      <span class="pile-item"><i class="ic ic--red">!</i>Strike-off warning</span>
+      <span class="pile-item"><i class="ic ic--grey"><svg><use href="#i-clock"/></svg></i>Remind me later</span>
+      <span class="pile-item pile-item--alert"><i class="ic">£</i>£1,500 penalty</span>
+      <span class="pile-item"><i class="ic ic--amber"><svg><use href="#i-mail"/></svg></i>Accountant: “Did you send the figures?”</span>
+      <span class="pile-item dot">9+</span>
+      <span class="pile-item"><i class="ic ic--red">!</i>Confirmation statement overdue</span>
+      <span class="pile-item"><i class="ic ic--grey"><svg><use href="#i-clock"/></svg></i>Snoozed · Year-end accounts</span>
+      <span class="pile-item"><i class="ic ic--amber"><svg><use href="#i-clock"/></svg></i>14 days left to file</span>
+      <span class="pile-item dot dot--ink">£</span>
+      <span class="pile-item"><i class="ic ic--red">!</i>Missed deadline</span>
+      <span class="pile-item"><i class="ic ic--grey"><svg><use href="#i-mail"/></svg></i>Note to self: file CS01</span>
+      <span class="pile-item pile-item--alert"><i class="ic">£</i>£150 late filing fine</span>
+      <span class="pile-item"><i class="ic ic--amber"><svg><use href="#i-clock"/></svg></i>Deadline: 30 Sep</span>
+      <span class="pile-item dot">2</span>
+      <span class="pile-item"><i class="ic ic--red">!</i>Accounts rejected · resubmit</span>
+      <span class="pile-item"><i class="ic ic--grey"><svg><use href="#i-mail"/></svg></i>Spam folder (37)</span>
+      <span class="pile-item"><i class="ic ic--amber"><svg><use href="#i-clock"/></svg></i>Accounts due in 2 days</span>
+    </div>
+    <p class="pile-hint" data-pile-hint aria-hidden="true">Go on, drag them about. They’re still not filed.</p>
+  </section>
+
+  <!-- NUMBERS + PENALTIES -->
+  <section class="stats" id="penalties" aria-labelledby="stats-title">
+    <div class="wrap">
+      <p class="kicker kicker--light">The bigger picture</p>
+      <h2 id="stats-title" class="reveal">Missed deadlines are more common than you’d think.</h2>
+      <div class="stats__grid">
+        <div class="stat reveal">
+          <p class="stat__tag">Penalties in one year</p>
+          <p class="stat__num"><span data-count="317985">317,985</span></p>
+          <p class="stat__label">late filing penalties issued for company accounts in 2024–25</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__tag">Penalties every day</p>
+          <p class="stat__num">~<span data-count="870">870</span></p>
+          <p class="stat__label">late filing penalties issued on an average day</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__tag">Highest single penalty</p>
+          <p class="stat__num">£<span data-count="3000">3,000</span></p>
+          <p class="stat__label">for accounts over 6 months late, if they were also late the year before</p>
+        </div>
+      </div>
+
+      <h3 class="fees__title reveal">What a late filing penalty costs</h3>
+      <ul class="fees reveal">
+        <li><span>Up to 1 month late</span><strong>£150</strong></li>
+        <li><span>1 to 3 months</span><strong>£375</strong></li>
+        <li><span>3 to 6 months</span><strong>£750</strong></li>
+        <li><span>Over 6 months</span><strong>£1,500</strong></li>
+      </ul>
+      <p class="source">Private limited companies. Penalties double if accounts are late two years in a row. Sources: <a href="https://www.gov.uk/government/publications/companies-house-independent-adjudicators-report-2024-to-2025" rel="noopener" target="_blank">Independent Adjudicators’ report 2024–25</a>, <a href="https://www.gov.uk/government/publications/late-filing-penalties" rel="noopener" target="_blank">GOV.UK</a></p>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features" aria-labelledby="feat-title">
+    <div class="wrap features__grid">
+      <div>
+        <p class="kicker">What Webfile does</p>
+        <h2 id="feat-title" class="reveal">Your filing dates, looked after</h2>
+        <ul class="feat-list">
+          <li class="reveal">
+            <span class="feat-ic"><svg><use href="#i-grid"/></svg></span>
+            <div><h3>All your companies in one place</h3><p>One dashboard for every company you run.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="feat-ic"><svg><use href="#i-clock"/></svg></span>
+            <div><h3>Deadlines tracked for you</h3><p>Accounts and confirmation statements, straight from the Companies House register.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="feat-ic"><svg><use href="#i-mail"/></svg></span>
+            <div><h3>Reminders until it’s done</h3><p>A nudge as each date gets closer. They stop once it’s filed.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="feat-ic"><svg><use href="#i-check"/></svg></span>
+            <div><h3>Free for up to 3 companies</h3><p>No cost to get started.</p></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="demo-wrap reveal" data-demo-wrap>
+        <div class="demo" data-demo>
+          <p class="demo__name">Sample Bakery Ltd</p>
+          <p class="demo__meta">Annual accounts due 31 Dec · <span class="status status--amber" data-demo-status>Due in 30 days</span></p>
+
+          <div class="stack" data-stack tabindex="0" role="button" aria-expanded="false" aria-label="Reminder notifications, select to expand">
+            <div class="note" data-note data-status="Due in 30 days" data-tone="amber">
+              <span class="note__icon" aria-hidden="true">w<span>.</span></span>
+              <div><div class="note__top"><strong>Accounts due in 30 days</strong><time>1 Dec</time></div><p>Plenty of time. Let your accountant know.</p></div>
+            </div>
+            <div class="note" data-note data-status="Due in 14 days" data-tone="amber">
+              <span class="note__icon" aria-hidden="true">w<span>.</span></span>
+              <div><div class="note__top"><strong>14 days left</strong><time>17 Dec</time></div><p>Still not filed. Here’s another nudge.</p></div>
+            </div>
+            <div class="note" data-note data-status="Due in 7 days" data-tone="red">
+              <span class="note__icon" aria-hidden="true">w<span>.</span></span>
+              <div><div class="note__top"><strong>7 days to go</strong><time>24 Dec</time></div><p>A good moment to get it filed.</p></div>
+            </div>
+          </div>
+          <p class="stack__hint" data-stack-hint></p>
+
+          <div class="filed" data-filed>
+            <span class="filed__tick" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <div><strong>Filed on 27 Dec</strong><span>Reminders stopped. Companies House register updated.</span></div>
+          </div>
+
+          <div class="demo__foot">
+            <span>Illustrative example</span>
+            <button type="button" class="link-btn" data-demo-replay>Replay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD PREVIEW -->
+  <section class="dash-sec" id="dashboard" aria-labelledby="dash-title">
+    <div class="wrap">
+      <div class="dash-sec__head">
+        <div>
+          <p class="kicker">Inside Webfile</p>
+          <h2 id="dash-title" class="reveal">Have a look around</h2>
+          <p class="lead reveal">This is a sample dashboard. Pick a company to see its deadlines and reminders, or simulate a filing to see what happens next.</p>
+        </div>
+        <div class="dash-sec__cta reveal">
+          <a href="signup.html" class="btn btn--primary">Try it free <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <p>Free for up to 3 companies</p>
+        </div>
+      </div>
+
+      <div class="app reveal" data-app aria-label="Interactive sample dashboard">
+        <p class="app__loading">Loading sample dashboard…</p>
+      </div>
+      <p class="app__caption">Sample companies and dates, for illustration only.</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing" aria-labelledby="price-title">
+    <div class="wrap">
+      <div class="pricing__head">
+        <p class="kicker">Pricing</p>
+        <h2 id="price-title" class="reveal">Free for your first three companies</h2>
+        <p class="lead reveal">Most people never need more. If you look after a bigger portfolio, there’s a plan for that too.</p>
+      </div>
+
+      <div class="plans">
+        <article class="plan plan--featured reveal">
+          <p class="plan__badge">Start here</p>
+          <h3>Free</h3>
+          <p class="plan__desc">For directors with one to three companies.</p>
+          <p class="plan__price"><b>£0</b><span>/month</span></p>
+          <p class="plan__cos">Up to 3 companies</p>
+          <a href="signup.html" class="btn btn--primary plan__btn">Try it free</a>
+          <ul class="plan__list">
+            <li>Accounts and confirmation statements</li>
+            <li>Email reminders until it’s filed</li>
+            <li>Dashboard and deadline calendar</li>
+          </ul>
+        </article>
+
+        <article class="plan reveal">
+          <h3>Business</h3>
+          <p class="plan__desc">For owners running several companies.</p>
+          <p class="plan__price"><b>£24.99</b><span>/month</span></p>
+          <p class="plan__cos">Up to 15 companies</p>
+          <a href="signup.html?plan=business" class="btn btn--ghost plan__btn">Choose Business</a>
+          <ul class="plan__list">
+            <li>Everything in Free</li>
+            <li>Choose your own reminder timing</li>
+            <li>Copy in your accountant</li>
+          </ul>
+        </article>
+
+        <article class="plan reveal">
+          <h3>Practice</h3>
+          <p class="plan__desc">For accountants and bookkeepers.</p>
+          <p class="plan__price"><b>£99</b><span>/month</span></p>
+          <p class="plan__cos">Up to 50 companies</p>
+          <a href="signup.html?plan=practice" class="btn btn--ghost plan__btn">Choose Practice</a>
+          <ul class="plan__list">
+            <li>Everything in Business</li>
+            <li>Client deadlines in one view</li>
+            <li>Help getting set up</li>
+          </ul>
+        </article>
+
+        <article class="plan reveal">
+          <h3>Larger portfolios</h3>
+          <p class="plan__desc">For firms with more than 50 companies.</p>
+          <p class="plan__price"><b>Let’s talk</b></p>
+          <p class="plan__cos">50+ companies</p>
+          <a href="#start" class="btn btn--ghost plan__btn">Get in touch</a>
+          <ul class="plan__list">
+            <li>Everything in Practice</li>
+            <li>Pricing to fit your portfolio</li>
+          </ul>
+        </article>
+      </div>
+
+      <details class="compare reveal">
+        <summary>Compare plans</summary>
+        <div class="compare__scroll">
+          <table class="compare__table">
+            <thead>
+              <tr><th scope="col"><span class="sr-only">Feature</span></th><th scope="col">Free</th><th scope="col">Business</th><th scope="col">Practice</th><th scope="col">Larger</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Companies</th><td>Up to 3</td><td>Up to 15</td><td>Up to 50</td><td>50+</td></tr>
+              <tr><th scope="row">Accounts and confirmation statement tracking</th><td class="y">Included</td><td class="y">Included</td><td class="y">Included</td><td class="y">Included</td></tr>
+              <tr><th scope="row">Email reminders until it’s filed</th><td class="y">Included</td><td class="y">Included</td><td class="y">Included</td><td class="y">Included</td></tr>
+              <tr><th scope="row">Dashboard and deadline calendar</th><td class="y">Included</td><td class="y">Included</td><td class="y">Included</td><td class="y">Included</td></tr>
+              <tr><th scope="row">Choose your own reminder timing</th><td class="n">Not included</td><td class="y">Included</td><td class="y">Included</td><td class="y">Included</td></tr>
+              <tr><th scope="row">Copy in your accountant or a colleague</th><td class="n">Not included</td><td class="y">Included</td><td class="y">Included</td><td class="y">Included</td></tr>
+              <tr><th scope="row">Help getting set up</th><td class="n">Not included</td><td class="n">Not included</td><td class="y">Included</td><td class="y">Included</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <p class="pricing__note">Proposed pricing, shown for illustration. Final prices and VAT to be confirmed.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap wrap--narrow">
+      <p class="kicker">Questions</p>
+      <h2 id="faq-title" class="reveal">Good to know</h2>
+
+      <details>
+        <summary>Does Webfile file for me?</summary>
+        <p>No. You or your accountant file as usual. Webfile just reminds you.</p>
+      </details>
+      <details>
+        <summary>Doesn’t Companies House already send reminders?</summary>
+        <p>Yes, and they’re worth having. Webfile adds one view of all your companies, with reminders that continue until the filing is done.</p>
+      </details>
+      <details>
+        <summary>When are accounts and confirmation statements due?</summary>
+        <p>Accounts are usually due 9 months after your financial year ends. A confirmation statement is due at least once every 12 months. Webfile shows the exact dates for each company.</p>
+      </details>
+      <details>
+        <summary>Who is Webfile for?</summary>
+        <p>Company directors, people running several companies, and accountants keeping an eye on client deadlines.</p>
+      </details>
+      <details>
+        <summary>How much does it cost?</summary>
+        <p>It’s free for up to 3 companies. If you look after more, see the <a href="#pricing">plans above</a>.</p>
+      </details>
+      <details>
+        <summary>Is Webfile part of Companies House?</summary>
+        <p>No. Webfile is independent and isn’t affiliated with Companies House or GOV.UK.</p>
+      </details>
+      <details>
+        <summary>Will Webfile cover other deadlines?</summary>
+        <p>That’s the plan. HMRC deadlines, insurance renewals, contracts and licences are on the way.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA / SIGN-UP -->
+  <section class="cta" id="start" aria-labelledby="cta-title">
+    <div class="wrap wrap--narrow">
+      <h2 id="cta-title">Fancy a hand keeping track?</h2>
+      <p>Add up to 3 companies for free. No long set-up, just your dates in one place.</p>
+      <form class="signup" data-signup novalidate>
+        <label class="sr-only" for="email">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@company.co.uk" autocomplete="email" required>
+        <label class="sr-only" for="companies">How many companies?</label>
+        <select id="companies" name="companies">
+          <option value="1-3">1 to 3 companies</option>
+          <option value="4-10">4 to 10 companies</option>
+          <option value="11-50">11 to 50 companies</option>
+          <option value="50+">More than 50</option>
+        </select>
+        <button type="submit" class="btn btn--light">Get started</button>
+      </form>
+      <p class="signup__msg" data-signup-msg role="status"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <a href="#top" class="logo logo--light">webfile<span>.</span></a>
+      <p>Companies House deadline reminders for directors, business owners and accountants.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="#features">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#penalties">Late filing penalties</a>
+      <a href="#faq">FAQ</a>
+      <a href="#start">Contact</a>
+      <a href="#">Privacy</a>
+    </nav>
+  </div>
+  <div class="wrap footer__legal">
+    <p>Webfile is an independent service and is not affiliated with, endorsed by or connected to Companies House or GOV.UK. Webfile sends reminders and does not file documents on your behalf.</p>
+    <p>© 2026 Webfile</p>
+  </div>
+</footer>
+
+</body>
+</html>
