@@ -188,6 +188,7 @@
     const sch = schedule(d);
     return `<div class="dscrim" data-act="close"></div>
       <aside class="ddrawer" role="dialog" aria-label="${esc(c.name)}">
+        <span class="dgrab" aria-hidden="true"></span>
         <div class="ddrawer__head">${avatar(c)}<div><b>${esc(c.name)}</b><small>Company no. ${c.no} (sample)</small></div><button type="button" class="dx" data-act="close" aria-label="Close">${ic('x')}</button></div>
         <div class="dseg">${c.dl.map((x, i) => `<button type="button" aria-pressed="${i === S.drawer.dl}" data-seldl="${i}">${esc(x.t)}</button>`).join('')}</div>
         <div class="dbig">
@@ -213,6 +214,7 @@
     root.innerHTML = `
       <div class="app__bar" aria-hidden="true"><span></span><span></span><span></span><p>webfile.com/${S.page === 'overview' ? 'dashboard' : S.page}</p></div>
       <div class="dapp">
+        <header class="dtop"><p class="dlogo">webfile<span>.</span></p><div class="dtop__act">${bell()}<span class="dav dav--me">DA</span></div></header>
         <nav class="dside" aria-label="Demo dashboard pages">
           <p class="dlogo">webfile<span>.</span></p>
           ${NAV.map(([k, l, i]) => `<button type="button" class="dnav${S.page === k ? ' is-active' : ''}" data-page="${k}" aria-current="${S.page === k ? 'page' : 'false'}">${ic(i)}<span>${l}</span></button>`).join('')}

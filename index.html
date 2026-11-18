@@ -12,9 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=8">
   <script>(function(){var d=document.documentElement,t;if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('js-anim');try{t=localStorage.getItem('wf-theme')}catch(e){}if(t!=='dark'&&t!=='light')t='light';d.setAttribute('data-theme',t);try{localStorage.removeItem('wf-palette')}catch(e){}})();</script>
-  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js?v=8" defer></script>
 </head>
 <body>
 
@@ -52,7 +52,7 @@
         <span class="eyebrow">Companies House deadline reminders</span>
         Deadlines pile&nbsp;up. <em>We’ll keep&nbsp;track.</em>
       </h1>
-      <p class="hero__sub">Running a company comes with dates to remember: accounts, confirmation statements, and the odd reminder email that gets lost in your inbox. Webfile keeps an eye on your Companies House deadlines and gives you a friendly nudge until each one is filed.</p>
+      <p class="hero__sub">Webfile tracks the Companies House filing deadlines for all your companies and sends you friendly reminders until each one is filed. Accounts and confirmation statements in one place, with no dates lost in your inbox.</p>
       <div class="hero__ctas">
         <a href="#features" class="btn btn--primary">See how it works <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a href="#start" class="btn btn--ghost">Try it free</a>
@@ -90,7 +90,6 @@
       <span class="pile-item"><i class="ic ic--grey"><svg><use href="#i-mail"/></svg></i>Spam folder (37)</span>
       <span class="pile-item"><i class="ic ic--amber"><svg><use href="#i-clock"/></svg></i>Accounts due in 2 days</span>
     </div>
-    <p class="pile-hint" data-pile-hint aria-hidden="true">Go on, drag them about. They’re still not filed.</p>
   </section>
 
   <!-- NUMBERS + PENALTIES -->
@@ -337,6 +336,7 @@
   <!-- CTA / SIGN-UP -->
   <section class="cta" id="start" aria-labelledby="cta-title">
     <div class="wrap wrap--narrow">
+      <div class="sort" data-sort aria-hidden="true"></div>
       <h2 id="cta-title">Fancy a hand keeping track?</h2>
       <p>Add up to 3 companies for free. No long set-up, just your dates in one place.</p>
       <form class="signup" data-signup novalidate>
@@ -369,7 +369,8 @@
       <a href="#penalties">Late filing penalties</a>
       <a href="#faq">FAQ</a>
       <a href="#start">Contact</a>
-      <a href="#">Privacy</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
     </nav>
   </div>
   <div class="wrap footer__legal">

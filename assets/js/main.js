@@ -95,7 +95,13 @@
       frame.style.setProperty('--demo-h', Math.ceil(base + expanded) + 'px');
       frame.classList.add('is-sized');
     };
+    const evenHeights = () => { // same height for every card so the stack looks tidy at any width
+      notes.forEach(n => { n.style.minHeight = ''; });
+      const h = Math.max(...notes.map(n => n.offsetHeight));
+      notes.forEach(n => { n.style.minHeight = h + 'px'; });
+    };
     const layout = () => {
+      evenHeights();
       const shown = notes.filter(n => n.classList.contains('is-shown')).reverse(); // newest first
       const open = (hovering || pinned) && shown.length > 1;
       notes.forEach(n => { if (!n.classList.contains('is-shown')) { n.style.opacity = 0; n.style.transform = 'translateY(-16px) scale(.98)'; n.style.zIndex = 0; } });
@@ -128,6 +134,9 @@
     stack.addEventListener('click', () => { if (!canHover) { pinned = !pinned; layout(); } });
     stack.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pinned = !pinned; layout(); } });
     addEventListener('resize', layout);
+    // re-measure once web fonts and the page have loaded (text size changes the card heights)
+    if (document.fonts) document.fonts.ready.then(layout);
+    addEventListener('load', layout, { once: true });
 
     layout();
     if (reduce) showAll(); else onView(demo, play, { threshold: 0.45 });
@@ -138,8 +147,105 @@
   /* Sample dashboard: load its script only when the section comes into view */
   const app = $('[data-app]');
   if (app) {
-    const loadDash = () => { const s = document.createElement('script'); s.src = 'assets/js/dashboard.js'; s.async = true; document.head.appendChild(s); };
+    const loadDash = () => { const s = document.createElement('script'); s.src = 'assets/js/dashboard.js?v=8'; s.async = true; document.head.appendChild(s); };
     onView(app, loadDash, { rootMargin: '400px 0px', threshold: 0 });
+
+    /* Phones: when scrolling DOWN into the dashboard, glide so the whole demo is on screen
+       (otherwise swipes get caught half inside it). Only triggers once the intro text/CTA is
+       mostly passed, and re-arms when the user scrolls back above the dashboard. */
+    const small = matchMedia('(max-width: 860px)');
+    let lastY = scrollY, armed = true, snapping = false;
+    addEventListener('scroll', () => {
+      const y = scrollY, down = y > lastY; lastY = y;
+      if (!small.matches || snapping) return;
+      const top = app.getBoundingClientRect().top, vh = innerHeight;
+      if (top > vh) { armed = true; return; }                  // back above the dashboard: re-arm
+      if (!armed || !down) return;
+      if (top < vh * 0.6 && top > 0) {                          // dashboard partly visible, scrolling down
+        armed = false; snapping = true;
+        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 68;
+        scrollTo({ top: y + top - navH - 8, behavior: reduce ? 'auto' : 'smooth' });
+        setTimeout(() => { snapping = false; lastY = scrollY; }, 700);
+      }
+    }, { passive: true });
+  }
+
+  /* Closing animation: the Webfile hand sorts the messy pile into tidy, ticked rows */
+  const sortStage = $('[data-sort]');
+  if (sortStage) {
+    const CLOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
+    const MAIL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>';
+    const TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+    const ICON = { red: '!', amber: CLOCK, grey: MAIL };
+    const DATA = [ // [tone, problem, sorted]
+      ['red', 'Accounts overdue', 'Accounts filed'],
+      ['amber', 'Confirmation statement due', 'Confirmation statement filed'],
+      ['grey', 'Reminder email · unread', 'Reminders set up'],
+      ['amber', '14 days left to file', 'On track, 14 days to go'],
+      ['red', 'Final reminder', 'Filed early'],
+      ['grey', 'Note to self: file CS01', 'CS01 filed'],
+      ['amber', 'Deadline: 30 Sep', '30 Sep in the calendar'],
+      ['red', 'Strike-off warning', 'All up to date']
+    ];
+    const HAND = '<svg viewBox="0 0 24 24" fill="#fff" stroke="#150A35" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V9a2 2 0 0 0-4 0v1M14 10V8a2 2 0 0 0-4 0v2M10 9.5V4a2 2 0 0 0-4 0v10l-1.8-1.8a2 2 0 0 0-2.8 2.8l3.6 3.6C6.5 20.1 8.2 21 11 21h2a8 8 0 0 0 8-8v-2a2 2 0 0 0-4 0"/></svg>';
+    let seed = 7; const srand = (a, b) => { seed = (seed * 9301 + 49297) % 233280; return a + (seed / 233280) * (b - a); };
+    let pills = [], hand, played = false, timers = [];
+    const place = (el, x, y, r = 0, s = 1) => { el.style.transform = `translate(${x}px,${y}px) rotate(${r}deg) scale(${s})`; };
+    const wait = ms => new Promise(res => timers.push(setTimeout(res, ms)));
+
+    const build = done => {
+      timers.forEach(clearTimeout); timers = []; seed = 7;
+      sortStage.innerHTML = '';
+      const W = sortStage.clientWidth, narrow = W < 600;
+      const items = DATA.slice(0, narrow ? 5 : 8), cols = narrow ? 1 : 2, gapX = 16, gapY = 12;
+      pills = items.map(([tone, bad, good]) => {
+        const el = document.createElement('span');
+        el.className = 'sort-pill';
+        el.innerHTML = `<i class="ic ic--${tone}">${ICON[tone]}</i><b>${bad}</b>`;
+        el.dataset.good = good;
+        sortStage.append(el);
+        return { el, w: 0, h: 0 };
+      });
+      // measure with the longer (sorted) text so slots fit either label
+      pills.forEach(p => { const b = p.el.querySelector('b'), t = b.textContent; b.textContent = p.el.dataset.good; p.w = Math.max(p.el.offsetWidth, 0); b.textContent = t; p.w = Math.max(p.w, p.el.offsetWidth); p.h = p.el.offsetHeight; });
+      const H = Math.max(...pills.map(p => p.h)), rows = Math.ceil(pills.length / cols);
+      const colW = (W - gapX * (cols - 1)) / cols;
+      const gridH = rows * H + (rows - 1) * gapY;
+      sortStage.style.height = (gridH + 10) + 'px';
+      pills.forEach((p, i) => {
+        p.tx = (i % cols) * (colW + gapX) + (narrow ? (W - p.w) / 2 : 0);
+        p.ty = Math.floor(i / cols) * (H + gapY);
+        p.sx = srand(0, Math.max(0, W - p.w)); p.sy = gridH - H - srand(0, gridH * 0.55); p.sr = srand(-26, 26);
+        if (done) { p.el.classList.add('is-done'); p.el.querySelector('.ic').innerHTML = TICK; p.el.querySelector('b').textContent = p.el.dataset.good; place(p.el, p.tx, p.ty); }
+        else place(p.el, p.sx, p.sy, p.sr);
+        p.el.style.zIndex = done ? 1 : 2 + i;
+      });
+      hand = document.createElement('span'); hand.className = 'sort-hand'; hand.innerHTML = HAND;
+      place(hand, W + 20, gridH); sortStage.append(hand);
+    };
+
+    const run = async () => {
+      if (played) return; played = true;
+      hand.classList.add('is-on');
+      for (const p of pills) {
+        const hx = x => x + Math.min(p.w * 0.3, 70), hy = y => y + p.h * 0.35;
+        place(hand, hx(p.sx), hy(p.sy)); await wait(480);           // reach for the pill
+        p.el.classList.add('is-held'); place(p.el, p.sx, p.sy - 6, p.sr * 0.5, 1.05); await wait(160); // pick it up
+        place(p.el, p.tx, p.ty, 0, 1.05); place(hand, hx(p.tx), hy(p.ty)); await wait(520); // carry to its slot
+        place(p.el, p.tx, p.ty); p.el.classList.remove('is-held'); p.el.style.zIndex = 1;
+        p.el.classList.add('is-done'); p.el.querySelector('.ic').innerHTML = TICK; p.el.querySelector('b').textContent = p.el.dataset.good;
+        await wait(140);
+      }
+      place(hand, sortStage.clientWidth + 30, -20); hand.classList.remove('is-on');
+    };
+
+    build(reduce);
+    if (reduce) played = true;
+    else onView(sortStage, () => setTimeout(run, 300), { threshold: 0.5 });
+    let rw = sortStage.clientWidth, rt2;
+    addEventListener('resize', () => { clearTimeout(rt2); rt2 = setTimeout(() => {
+      if (Math.abs(sortStage.clientWidth - rw) < 40) return; rw = sortStage.clientWidth; build(played);
+    }, 250); });
   }
 
   /* Sign-up form – placeholder until a form service is connected */
@@ -233,11 +339,11 @@
         const round = s.el.classList.contains('dot');
         const x = rand(s.w / 2 + 12, W - s.w / 2 - 12);
         const y = -s.h - rand(0, 160);
-        const opts = { restitution: 0.25, friction: 0.5, frictionAir: 0.012, density: 0.002, angle: rand(-0.7, 0.7) };
+        const opts = { restitution: 0.25, friction: 0.5, frictionAir: 0.012, density: 0.002, angle: rand(-0.45, 0.45) };
         const b = round
           ? Bodies.circle(x, y, s.w / 2, opts)
           : Bodies.rectangle(x, y, s.w, s.h, Object.assign(opts, { chamfer: { radius: s.h / 2 - 1 } }));
-        Body.setAngularVelocity(b, rand(-0.06, 0.06));
+        Body.setAngularVelocity(b, rand(-0.03, 0.03));
         b.plugin = { el: s.el, w: s.w, h: s.h, rest: false };
         Composite.add(engine.world, b);
         live.push(b);
@@ -256,7 +362,12 @@
         const p = b.plugin;
         if (b.isSleeping && p.rest) continue;
         p.rest = b.isSleeping;
-        p.el.style.transform = `translate(${b.position.x - p.w / 2}px,${b.position.y - p.h / 2}px) rotate(${b.angle}rad)`;
+        // Pills are symmetric capsules: turning one 180° gives the same outline. So if a pill is
+        // upside down, draw its content flipped to keep the text readable (hysteresis avoids flicker near vertical).
+        const n = ((b.angle + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+        if (!p.flip && Math.abs(n) > 1.75) p.flip = true;
+        else if (p.flip && Math.abs(n) < 1.4) p.flip = false;
+        p.el.style.transform = `translate(${b.position.x - p.w / 2}px,${b.position.y - p.h / 2}px) rotate(${b.angle + (p.flip ? Math.PI : 0)}rad)`;
       }
       raf = requestAnimationFrame(frame);
     }

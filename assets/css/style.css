@@ -477,30 +477,78 @@ details p{padding:0 0 24px;color:var(--ink-2);max-width:64ch}
 .ddrawer__foot small{color:var(--muted);font-size:12px}
 .ddone{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--green-ink)}
 
-/* responsive */
-@media (max-width:1100px){.dstats{grid-template-columns:1fr 1fr}.dtr{grid-template-columns:2fr 1.3fr 1.2fr 1fr 20px}.dtr > span:nth-child(4){display:none}}
-@media (max-width:860px){
-  .dapp{grid-template-columns:1fr;height:auto}
-  .dside{flex-direction:row;overflow-x:auto;padding:10px;border-right:0;border-bottom:1px solid var(--d-line);gap:6px}
-  .dlogo,.dside__foot{display:none}
-  .dnav{width:auto;flex:none}
-  .dmain{padding:18px 16px 24px;min-height:560px}
-  .dcols{grid-template-columns:1fr}
-  .dtr{grid-template-columns:1fr auto;row-gap:6px}
+/* responsive: the dashboard adapts to its own width (container queries) */
+.app{container:app / inline-size}
+.dtop,.dgrab{display:none}
+@container app (max-width:1000px){
+  .dstats{grid-template-columns:1fr 1fr}
+  .dtr{grid-template-columns:2fr 1.3fr 1.2fr 1fr 20px}
+  .dtr > span:nth-child(4){display:none}
+}
+/* Phone: app-style layout (top app bar, bottom tab bar, card lists, bottom sheet) */
+@container app (max-width:720px){
+  .app__bar{display:none}
+  .dapp{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;height:min(700px,calc(100svh - 92px));min-height:520px}
+  .dtop{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--d-line)}
+  .dtop .dlogo{padding:0;font-size:20px}
+  .dtop__act{display:flex;align-items:center;gap:10px}
+  .dtop .dav--me{width:34px;height:34px}
+  .dside{grid-row:3;flex-direction:row;justify-content:space-around;gap:0;padding:6px 4px 8px;border-right:0;border-top:1px solid var(--d-line)}
+  .dside .dlogo,.dside__foot{display:none}
+  .dnav{flex:1;flex-direction:column;align-items:center;gap:3px;width:auto;padding:4px 2px;font-size:10.5px;font-weight:600;text-align:center;border-radius:10px}
+  .dnav:hover{background:none}
+  .dnav svg{width:52px;height:30px;padding:5px 15px;border-radius:999px}
+  .dnav.is-active{background:none;color:var(--brand-dark)}
+  .dnav.is-active svg{background:var(--brand-soft)}
+  .dmain{grid-row:2;padding:16px 14px 20px}
+  .dhead{margin-bottom:12px;align-items:center}
+  .dh1{font-size:20px}
+  .dsub{font-size:13px}
+  .dhead .dicon-btn[data-page="reminders"]{display:none}
+  .dhead__act .dbtn{padding:8px 11px;font-size:12.5px}
+  .dbanner{grid-template-columns:auto 1fr auto;gap:10px;padding:12px}
+  .dbanner__ic{width:34px;height:34px}
+  .dbanner strong{font-size:13.5px}
+  .dbanner p{display:none}
+  .dbanner .dbtn{grid-column:2/4;justify-self:start;padding:7px 11px}
+  .dbanner .dx{grid-column:3;grid-row:1}
+  .dstats{grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .dstat{flex-direction:column;align-items:flex-start;gap:8px;padding:12px;border-radius:14px}
+  .dstat__ic{width:34px;height:34px}
+  .dstat__ic svg{width:18px;height:18px}
+  .dstat b{font-size:22px}
+  .dstat small{display:none}
+  .dcard{padding:14px;border-radius:14px;margin-top:12px}
+  .dcard__head{flex-direction:column;align-items:stretch;gap:10px}
+  .dtabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .dtabs::-webkit-scrollbar{display:none}
+  .dtabs button{white-space:nowrap}
+  .dtable{gap:8px}
   .dtr--head{display:none}
+  .dtr{grid-template-columns:1fr auto;row-gap:6px;border:1px solid var(--d-line);border-radius:12px;padding:12px}
+  .dtr:hover{background:var(--surface)}
   .dtr > span:nth-child(2){grid-column:1;font-size:13px;color:var(--ink-2)}
   .dtr > span:nth-child(3){grid-column:1;font-size:13px}
+  .dtr > span:nth-child(4){display:block;grid-column:2;grid-row:2 / 4;align-self:end;text-align:right;font-size:13px}
   .dtr > span:nth-child(5){grid-column:2;grid-row:1}
   .dtr > span:nth-child(6){display:none}
-  .dbanner{grid-template-columns:auto 1fr auto}
-  .dbanner .dbtn{grid-column:1/-1;justify-self:start}
-  .dbanner .dx{grid-column:3;grid-row:1}
-  .dcal__cell{min-height:52px}
-  .dchip{font-size:0;padding:0;height:6px;border-radius:3px}
-  .dmrow{grid-template-columns:50px 1fr auto}.dmrow > span:nth-child(3){display:none}
-  .ddrawer{width:100%}
+  .dadd{padding:10px}
+  .dgrid{grid-template-columns:1fr}
+  .dmonth{width:100%;justify-content:space-between}
+  .dmonth b{min-width:0;font-size:14px}
+  .dcal{padding:8px}
+  .dcal__wk span{font-size:10px}
+  .dcal__cell{min-height:44px;padding:4px;border-radius:8px}
+  .dchip{font-size:0;padding:0;height:5px;border-radius:3px}
+  .dmrow{grid-template-columns:52px 1fr auto}
+  .dmrow > span:nth-child(3){display:none}
+  .dcols{grid-template-columns:1fr}
+  .dset{gap:12px}
+  /* company details as a bottom sheet */
+  .ddrawer{top:auto;left:0;right:0;width:100%;max-height:88%;border-radius:22px 22px 0 0;padding:10px 18px 22px;animation:dsheet .3s cubic-bezier(.2,.8,.2,1)}
+  .dgrab{display:block;width:40px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 12px}
 }
-@media (max-width:480px){.dstats{grid-template-columns:1fr 1fr;gap:8px}.dstat{flex-direction:column;align-items:flex-start;gap:10px;padding:12px}.dhead__act .dbtn{padding:9px 11px}}
+@keyframes dsheet{from{transform:translateY(30%);opacity:0}}
 
 /* Theme toggle */
 .theme-toggle{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;margin-right:-16px;transition:background .2s ease}
@@ -562,3 +610,54 @@ body,.nav.is-scrolled,.card,.app,.pile-item{transition:background-color .3s ease
 :root[data-theme="dark"] .stack.is-open .note{background:color-mix(in srgb,#FFFFFF 12%,var(--surface))}
 :root[data-theme="dark"] .note__icon{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
 :root[data-theme="dark"] .demo{border-color:rgba(255,255,255,.08)}
+
+/* Notification demo on single-column layouts: top-align the card, tighter notifications */
+@media (max-width:900px){.demo-wrap.is-sized .demo{top:0;transform:none}}
+@media (max-width:520px){
+  .demo{padding:20px 14px 14px}
+  .note{grid-template-columns:34px 1fr;gap:10px;padding:11px 12px}
+  .note__icon{width:34px;height:34px;font-size:16px;border-radius:9px}
+  .note strong{font-size:14px}
+  .note p{font-size:13px}
+  .demo__name{font-size:19px}
+}
+
+/* ---------- Legal pages (privacy, terms) ---------- */
+.legal{padding:calc(var(--nav-h) + clamp(40px,7vw,80px)) 0 clamp(80px,10vw,120px)}
+.legal h1{font-size:clamp(38px,5.4vw,60px);font-weight:800;letter-spacing:-.035em}
+.legal__meta{margin-top:14px;color:var(--muted);font-size:15px}
+.legal__draft{margin-top:18px;padding:12px 16px;border-radius:12px;background:var(--amber-bg);color:var(--amber-ink);font-size:14px;font-weight:600}
+.legal__toc{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 36px}
+.legal__toc a{font-size:14px;font-weight:500;text-decoration:none;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+.legal__toc a:hover{border-color:var(--brand);color:var(--brand-dark)}
+.legal h2{font-size:clamp(22px,2.6vw,27px);max-width:none;margin:44px 0 12px;scroll-margin-top:calc(var(--nav-h) + 16px)}
+.legal p,.legal li{color:var(--ink-2);font-size:17px;line-height:1.7}
+.legal p + p{margin-top:12px}
+.legal ul{margin:12px 0 0;padding-left:22px;display:grid;gap:8px}
+.legal li::marker{color:var(--brand)}
+.legal strong{color:var(--ink)}
+.legal a{color:var(--brand-dark)}
+.footer nav a[aria-current="page"]{color:var(--accent)}
+
+/* ---------- Closing animation: the Webfile hand sorts the pile ---------- */
+.sort{position:relative;width:100%;max-width:760px;margin:0 auto 48px;height:300px;text-align:left}
+.sort-pill{position:absolute;left:0;top:0;display:inline-flex;align-items:center;gap:10px;white-space:nowrap;
+  background:#fff;color:#150A35;border:1px solid rgba(21,10,53,.1);border-radius:999px;padding:7px 18px 7px 7px;
+  font:600 16px/1.2 var(--f-body);box-shadow:0 10px 24px -12px rgba(0,0,0,.45);
+  transition:transform .5s cubic-bezier(.3,.7,.2,1),box-shadow .25s ease,border-color .3s ease;will-change:transform}
+.sort-pill .ic{width:32px;height:32px;font-size:15px;transition:background .3s ease,transform .3s ease}
+.sort-pill .ic svg{width:18px;height:18px}
+.sort-pill.is-held{box-shadow:0 22px 40px -14px rgba(0,0,0,.55);z-index:20}
+.sort-pill.is-done{border-color:rgba(20,149,95,.35)}
+.sort-pill.is-done .ic{background:var(--green);animation:sortpop .35s ease}
+@keyframes sortpop{50%{transform:scale(1.25)}}
+.sort-hand{position:absolute;left:0;top:0;width:46px;height:46px;z-index:30;pointer-events:none;opacity:0;
+  transition:transform .5s cubic-bezier(.3,.7,.2,1),opacity .3s ease;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.sort-hand.is-on{opacity:1}
+.sort-hand svg{width:100%;height:100%}
+@media (max-width:600px){
+  .sort-pill{font-size:14px;padding:6px 14px 6px 6px;gap:8px}
+  .sort-pill .ic{width:28px;height:28px;font-size:13px}
+  .sort-pill .ic svg{width:16px;height:16px}
+  .sort-hand{width:40px;height:40px}
+}
