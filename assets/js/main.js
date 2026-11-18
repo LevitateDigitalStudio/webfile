@@ -147,7 +147,7 @@
   /* Sample dashboard: load its script only when the section comes into view */
   const app = $('[data-app]');
   if (app) {
-    const loadDash = () => { const s = document.createElement('script'); s.src = 'assets/js/dashboard.js?v=8'; s.async = true; document.head.appendChild(s); };
+    const loadDash = () => { const s = document.createElement('script'); s.src = 'assets/js/dashboard.js?v=9'; s.async = true; document.head.appendChild(s); };
     onView(app, loadDash, { rootMargin: '400px 0px', threshold: 0 });
 
     /* Phones: when scrolling DOWN into the dashboard, glide so the whole demo is on screen
@@ -221,7 +221,7 @@
         p.el.style.zIndex = done ? 1 : 2 + i;
       });
       hand = document.createElement('span'); hand.className = 'sort-hand'; hand.innerHTML = HAND;
-      place(hand, W + 20, gridH); sortStage.append(hand);
+      place(hand, W - 50, gridH - 40); sortStage.append(hand); // starts inside the stage (hidden) so it never widens the page
     };
 
     const run = async () => {
@@ -236,7 +236,7 @@
         p.el.classList.add('is-done'); p.el.querySelector('.ic').innerHTML = TICK; p.el.querySelector('b').textContent = p.el.dataset.good;
         await wait(140);
       }
-      place(hand, sortStage.clientWidth + 30, -20); hand.classList.remove('is-on');
+      place(hand, sortStage.clientWidth - 50, -10); hand.classList.remove('is-on');
     };
 
     build(reduce);
