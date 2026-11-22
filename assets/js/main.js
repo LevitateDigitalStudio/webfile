@@ -147,7 +147,7 @@
   /* Sample dashboard: load its script only when the section comes into view */
   const app = $('[data-app]');
   if (app) {
-    const loadDash = () => { const s = document.createElement('script'); s.src = 'assets/js/dashboard.js?v=9'; s.async = true; document.head.appendChild(s); };
+    const loadDash = () => { const s = document.createElement('script'); s.src = 'assets/js/dashboard.js?v=10'; s.async = true; document.head.appendChild(s); };
     onView(app, loadDash, { rootMargin: '400px 0px', threshold: 0 });
 
     /* Phones: when scrolling DOWN into the dashboard, glide so the whole demo is on screen
